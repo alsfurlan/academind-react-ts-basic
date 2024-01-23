@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './components/Header';
 import goalsImage from './assets/goals.jpg';
 import { useState } from 'react';
@@ -22,13 +21,17 @@ function App() {
     });
   };
 
+  function onDeleteGoal(id: number): void {
+    setGoals(prevGoals => prevGoals.filter(goal => goal.id !== id));
+  }
+
   return (
     <main>
       <Header image={{ src: goalsImage, alt: 'A list of goals' }}>
         <h1>Your Course Goals</h1>
       </Header>
       <button onClick={handleAddGoal}>Addon</button>
-      <CourseGoalList goals={goals}/>
+      <CourseGoalList goals={goals} onDeleteGoal={onDeleteGoal}/>
     </main>
   );
 }
